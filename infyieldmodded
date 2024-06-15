@@ -4431,7 +4431,8 @@ CMDs[#CMDs + 1] = {NAME = 'freezeanims', DESC = 'Freezes your animations / pause
 CMDs[#CMDs + 1] = {NAME = 'unfreezeanims', DESC = 'Unfreezes your animations / plays your animations'}
 CMDs[#CMDs + 1] = {NAME = 'thaw / unfr [player] (CLIENT)', DESC = 'Unfreezes a player'}
 CMDs[#CMDs + 1] = {NAME = 'ratw', DESC = 'Loads the Race Around The World script made by cexnpc'}
-CMDs[#CMDs + 1] = {NAME = 'ratwessentials / ratwe', DESC = 'Loads the"Race Around The World Essentials script made by cexnpc'}
+CMDs[#CMDs + 1] = {NAME = 'ratwessentials / ratwe', DESC = 'Loads the Race Around The World Essentials script made by cexnpc'}
+CMDs[#CMDs + 1] = {NAME = 'joinlowestserver / jls', DESC = 'Joins the lowest player count server'}
 CMDs[#CMDs + 1] = {NAME = 'tpposition / tppos [X Y Z]', DESC = 'Teleports you to certain coordinates'}
 CMDs[#CMDs + 1] = {NAME = 'tweentpposition / ttppos [X Y Z]', DESC = 'Tween to coordinates (bypasses some anti cheats)'}
 CMDs[#CMDs + 1] = {NAME = 'offset [X Y Z]', DESC = 'Offsets you by certain coordinates'}
@@ -6766,6 +6767,27 @@ end)
 
 addcmd("ratw", {}, function(args, speaker)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CeXxr/ratw/main/ratw%20script%20but%20better"))()
+end)
+
+addcmd("joinlowestserver", {"jls"}, function(args, speaker)
+	local Http = game:GetService("HttpService")
+local TPS = game:GetService("TeleportService")
+local Api = "https://games.roblox.com/v1/games/"
+
+local _place = game.PlaceId
+local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+function ListServers(cursor)
+  local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+  return Http:JSONDecode(Raw)
+end
+
+local Server, Next; repeat
+  local Servers = ListServers(Next)
+  Server = Servers.data[1]
+  Next = Servers.nextPageCursor
+until Server
+
+TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 end)
 
 addcmd("ratwessentials", {"ratwe"}, function(args, speaker)
