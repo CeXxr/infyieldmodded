@@ -1808,7 +1808,6 @@ selectJoin.TextColor3 = Color3.new(1, 1, 1)
 table.insert(shade3,selectJoin)
 table.insert(text1,selectJoin)
 
-
 function create(data)
 	local insts = {}
 	for i,v in pairs(data) do insts[v[1]] = Instance.new(v[2]) end
@@ -12531,8 +12530,8 @@ task.spawn(function()
 	end)
 
 	if success then
-		if currentVersion == latestVersionInfo.Version then
-			notify('Not Loaded!','If you got this message, it means that the cexnpc version hasn't loaded!')
+		if currentVersion ~= latestVersionInfo.Version then
+			notify('Loaded!','Congrats, you now have loaded the modded version if infinite yield made by cexnpc!')
 		end
 
 		if latestVersionInfo.Announcement and latestVersionInfo.Announcement ~= '' then
