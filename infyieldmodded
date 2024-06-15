@@ -12532,8 +12532,8 @@ task.spawn(function()
 	end)
 
 	if success then
-		if currentVersion ~= latestVersionInfo.Version then
-			notify('Loaded!','If you got this message, it means that the cexnpc version has loaded!')
+		if currentVersion == latestVersionInfo.Version then
+			notify('Not Loaded!','If you got this message, it means that the cexnpc version hasn't loaded!')
 		end
 
 		if latestVersionInfo.Announcement and latestVersionInfo.Announcement ~= '' then
