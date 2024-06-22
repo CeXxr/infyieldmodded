@@ -4432,7 +4432,6 @@ CMDs[#CMDs + 1] = {NAME = 'unfreezeanims', DESC = 'Unfreezes your animations / p
 CMDs[#CMDs + 1] = {NAME = 'thaw / unfr [player] (CLIENT)', DESC = 'Unfreezes a player'}
 CMDs[#CMDs + 1] = {NAME = 'ratw', DESC = 'Loads the Race Around The World script made by cexnpc'}
 CMDs[#CMDs + 1] = {NAME = 'ratwessentials / ratwe', DESC = 'Loads the Race Around The World Essentials script made by cexnpc'}
-CMDs[#CMDs + 1] = {NAME = 'seesubplaces', DESC = 'Lets you see a game's subplaces and their id's in the console!'}
 CMDs[#CMDs + 1] = {NAME = 'joinlowestserver / jls', DESC = 'Joins the lowest player count server'}
 CMDs[#CMDs + 1] = {NAME = 'tpposition / tppos [X Y Z]', DESC = 'Teleports you to certain coordinates'}
 CMDs[#CMDs + 1] = {NAME = 'tweentpposition / ttppos [X Y Z]', DESC = 'Tween to coordinates (bypasses some anti cheats)'}
@@ -6768,23 +6767,6 @@ end)
 
 addcmd("ratw", {}, function(args, speaker)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CeXxr/ratw/main/ratw%20script%20but%20better"))()
-end)
-
-addcmd('seesubplaces', {}, function(args, speaker)
-	game:GetService'StarterGui':SetCore("DevConsoleVisible", true)
-
-local pages = game:GetService("AssetService"):GetGamePlacesAsync()
-
-while true do
-   for _,place in pairs(pages:GetCurrentPage()) do
-      print("Name: " .. place.Name)
-      print("PlaceId: " .. tostring(place.PlaceId))
-   end
-   if pages.IsFinished then
-      break
-   end
-   pages:AdvanceToNextPageAsync()
-end
 end)
 
 addcmd("joinlowestserver", {"jls"}, function(args, speaker)
