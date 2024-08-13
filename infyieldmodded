@@ -9944,9 +9944,10 @@ end)
 addcmd('tweenoffset',{'toffset'},function(args, speaker)
 	if #args < 3 then return end
 	local tpX,tpY,tpZ = tonumber(args[1]),tonumber(args[2]),tonumber(args[3])
+        local tpXX,tpYY,tpZZ = game.Players.LocalPlayer.Character.HumanoidRootPart.Position+tpX,game.Players.LocalPlayer.Character.HumanoidRootPart.Position+tpY,game.Players.LocalPlayer.Character.HumanoidRootPart.Position+tpZ
 	local char = speaker.Character
 	if char and getRoot(char) then
-		TweenService:Create(getRoot(speaker.Character), TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {CFrame = CFrame.new(tpX,tpY,tpZ)}):Play()
+		TweenService:Create(getRoot(speaker.Character), TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {CFrame = CFrame.new(tpXX,tpYY,tpZZ)}):Play()
 	end
 end)
 
