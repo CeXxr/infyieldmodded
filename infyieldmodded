@@ -4433,6 +4433,7 @@ CMDs[#CMDs + 1] = {NAME = 'thaw / unfr [player] (CLIENT)', DESC = 'Unfreezes a p
 CMDs[#CMDs + 1] = {NAME = 'ratw', DESC = 'Loads the Race Around The World script made by cexnpc'}
 CMDs[#CMDs + 1] = {NAME = 'ratwessentials / ratwe', DESC = 'Loads the Race Around The World Essentials script made by cexnpc'}
 CMDs[#CMDs + 1] = {NAME = 'hitboxall / hba [size]', DESC = 'Gives every player other than you a bigger hitbox according to the selecte size'}
+CMDs[#CMDs + 1] = {NAME = 'restorehitboxall / rhba', DESC = 'Changes everyone's hitbox to be normal'}
 CMDs[#CMDs + 1] = {NAME = 'joinlowestserver / jls', DESC = 'Joins the lowest player count server'}
 CMDs[#CMDs + 1] = {NAME = 'tpposition / tppos [X Y Z]', DESC = 'Teleports you to certain coordinates'}
 CMDs[#CMDs + 1] = {NAME = 'tweentpposition / ttppos [X Y Z]', DESC = 'Tween to coordinates (bypasses some anti cheats)'}
@@ -6788,6 +6789,25 @@ game:GetService("RunService").RenderStepped:connect(function()
                 pcall(function()
                     v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
                     v.Character.HumanoidRootPart.Transparency = 0.5
+                    v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+                    v.Character.HumanoidRootPart.Material = "Neon"
+                    v.Character.HumanoidRootPart.CanCollide = false
+                end)
+            end
+        end
+    end
+end)
+end)
+
+addcmd("restorehitboxall", {"rhba"}, function(args, speaker)
+_G.Disabled = true
+game:GetService("RunService").RenderStepped:connect(function()
+    if _G.Disabled then
+        for i, v in next, game:GetService("Players"):GetPlayers() do
+            if (v.Name ~= game:GetService("Players").LocalPlayer.Name) then
+                pcall(function()
+                    v.Character.HumanoidRootPart.Size = Vector3.new(4, 2, 1)
+                    v.Character.HumanoidRootPart.Transparency = 1
                     v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
                     v.Character.HumanoidRootPart.Material = "Neon"
                     v.Character.HumanoidRootPart.CanCollide = false
